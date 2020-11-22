@@ -79,7 +79,6 @@
                     </tr>
             	</table>
             </div>
-            <!-- payment MODALS  -->
             @include('booking.form-payment')
         </form>
     </div>

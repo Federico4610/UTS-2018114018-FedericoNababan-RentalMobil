@@ -10,7 +10,6 @@
         @endforeach
     @endif
 
-<!-- Modal -->
 @include('booking.form-client')
 
     <div class="card card-secondary card-outline">

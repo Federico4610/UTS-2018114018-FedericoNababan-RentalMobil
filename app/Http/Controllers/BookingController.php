@@ -51,29 +51,23 @@ class BookingController extends Controller
     }
 
     public function calculate(Request $request){
-        //validate 
         $validate = $request->validate([
             'booking_code' => 'required|unique:bookings',
             'order_date' => 'required',
             'duration' => 'required',
         ]);
 
-        //get return date
         $order_duration = $request->duration;
         $order_date = $request->order_date;
         $return_date = date('Y-m-d', strtotime('+'.$order_duration.' days', strtotime($order_date)));
 
-        //get price total
         $car = Car::find($request->car_id);
         $total_price = $car->price * $order_duration;
 
-        //get dp minimum (30% from the price total)
         $dp = ($total_price * 10) / 100;
 
-        //get input 
         $data = $request->toArray();
 
-        //get client
         $client = Client::find($request->client_id);
 
         $title = 'Detail Order';
@@ -84,7 +78,6 @@ class BookingController extends Controller
     }
 
     public function process(Request $request){
-        //validate 
         $validate = $request->validate([
             'booking_code' => 'required|unique:bookings',
             'order_date' => 'required',
@@ -101,7 +94,6 @@ class BookingController extends Controller
        
 
 
-        //insert to table booking first
         $insert_booking = Booking::create([
             'booking_code' => $request->booking_code,
             'order_date' => $request->order_date,
@@ -114,7 +106,6 @@ class BookingController extends Controller
             'client_id' => $request->client_id,
         ]);
 
-        //insert to payment
         $insert_payment = Returns::create([
             'type' => $request->type,
             'amount' => $request->amount,
@@ -124,7 +115,6 @@ class BookingController extends Controller
             'booking_code' => $request->booking_code
         ]);
 
-        //update car status to not available (0)
         $car = Car::find($request->car_id);
         $car->available = '0';
         $car->save();

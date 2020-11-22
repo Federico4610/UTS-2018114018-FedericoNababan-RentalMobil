@@ -22,20 +22,17 @@ class ReturnController extends Controller
 
     public function information(Request $request){
     	$booking_code = $request->booking_code;
-    	//jika parameter kosong
     	if($booking_code == ''){
     		$request->session()->flash('warning', 'Select data rental from table below');
         	return redirect()->route('returns.index');
     	} 
 
     	$booking_table = Booking::where('booking_code', $booking_code)->first();
-    	//jika booking code tidak ditemukan
     	if($booking_table->count() == 0){
     		$request->session()->flash('warning', 'Data rental not found!');
         	return redirect()->route('returns.index');
     	} 
 
-    	//denda (perhitungannya nambah 10% per harinya)
     	if($booking_table->return_date_supposed <  date('Y-m-d')){	
     		$return_supposed = new DateTime($booking_table->return_date_supposed);
     		$return_now = new DateTime(date('Y-m-d'));
@@ -67,22 +64,17 @@ class ReturnController extends Controller
     		'amount' => 'required|min:'.$request->total .'|numeric',
     		'booking_code' => 'required',
     	]);
-    	//kalau amount lebih besar dari total, otomatis data total yg jadi value amount
-    	//biar ga kelamaan ngitung males gw
     	if($request->amount > $request->total){
     		$request->amount = $request->total;
     	}
 
-    	//dd($request->toArray());
 
-    	//update table booking
     	$update_booking = Booking::where('booking_code', $request->booking_code)->update([
     		'return_date' => date('Y-m-d'),
     		'fine' => $request->fine,
     		'status' => 'paid'
     	]);
 
-    	//add to table payment
     	Returns::create([
     		'type' => $request->type,
     		'amount' => $request->amount,
@@ -92,7 +84,6 @@ class ReturnController extends Controller
     		'booking_code' => $request->booking_code,
     	]);
 
-    	//change car status to available
     	$car = Car::find($request->car_id);
         $car->available = '1';
         $car->save();

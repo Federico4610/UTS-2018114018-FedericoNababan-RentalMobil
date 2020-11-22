@@ -92,7 +92,6 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         $client = Client::find($id);
-        //jika nik == yang di form. validasi unique email ilang
         if($client->nik == $request->nik){
             $validate = $request->validate([
                 'name' => 'required|string|max:150',

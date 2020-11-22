@@ -5,24 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title }} - FedCar Rental</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/iCheck/all.css')}}">
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css')}}">
-    <!-- datepicker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <link rel="stylesheet" href="{{ asset('style.css')}}">
@@ -45,7 +37,6 @@
                                 <h1>{{ $title }}</h1>
                             </div>
                         </div>
-                        <!-- flashmessage -->
                         @include('layouts.flash-message')
 
                     </div>
@@ -58,12 +49,9 @@
     
     </div>
 
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     
-    <!-- jQuery -->
     <script src=" {{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Datepicker -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
@@ -75,17 +63,12 @@
         });
     </script>
 
-    <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-    <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.js') }}"></script>
-    <!-- cleave js -->
     <script src="{{ asset('cleave-js/dist/cleave.min.js') }}"></script>
-    <!-- CHECKBOX -->
     <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
 
     <script>

@@ -90,7 +90,6 @@
                     </tr>
             	</table>
             </div>
-            <!-- payment MODALS  -->
             @include('returns.form-payment')
         </form>
     </div>	

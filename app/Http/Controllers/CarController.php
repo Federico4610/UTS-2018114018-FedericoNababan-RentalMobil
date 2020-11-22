@@ -22,9 +22,7 @@ class CarController extends Controller
         $cars = DB::table('cars')
                         ->join('brands', 'cars.brand_id', '=', 'brands.brand_id')
                         ->get()->toArray();
-        //ngereturn array dari query builder laravel
         $data['cars'] = json_decode(json_encode($cars), true);
-        //catatan : besok2 pake notasi objek aja kalo nampilin data dari eloqeunt or dari db
         $data['no'] = 1;
         return view('car.index', $data);
     }
